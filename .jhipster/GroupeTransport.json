@@ -1,0 +1,44 @@
+{
+  "name": "GroupeTransport",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "3",
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "nombreEleves",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "zone",
+      "otherEntityRelationshipName": "groupetransports",
+      "relationshipValidateRules": "required",
+      "relationshipName": "zones",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20220829221714",
+  "entityTableName": "groupe_transports",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "transport",
+  "applications": "*",
+  "microserviceName": "transport"
+}

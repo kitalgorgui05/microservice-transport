@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity ProgrammeTransport.
+    -->
+    <changeSet id="20220829221914-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="groupe_transport_id"
+                                 baseTableName="programme_transports"
+                                 constraintName="fk_programme_transports_groupe_transport_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groupe_transports"/>
+
+        <addForeignKeyConstraint baseColumnNames="bus_id"
+                                 baseTableName="programme_transports"
+                                 constraintName="fk_programme_transports_bus_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bus"/>
+
+    </changeSet>
+</databaseChangeLog>

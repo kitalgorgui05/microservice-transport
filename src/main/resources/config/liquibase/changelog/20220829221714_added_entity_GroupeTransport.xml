@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity GroupeTransport.
+    -->
+    <changeSet id="20220829221714-1" author="jhipster">
+        <createTable tableName="groupe_transports">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nom" type="varchar(10)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_groupe_transports_nom" />
+            </column>
+            <column name="nombre_eleves" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="etat" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20220829221714-1-relations" author="jhipster">
+
+        <createTable tableName="groupe_transports_zones">
+            <column name="zones_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="groupe_transport_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="groupe_transport_id, zones_id" tableName="groupe_transports_zones"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220829221714-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/groupe_transports.csv"
+                  separator=";"
+                  tableName="groupe_transports">
+            <column name="id" type="numeric"/>
+            <column name="nom" type="string"/>
+            <column name="nombre_eleves" type="numeric"/>
+            <column name="etat" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
