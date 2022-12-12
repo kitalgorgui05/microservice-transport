@@ -150,7 +150,7 @@ public class ChauffeurResourceIT {
         int databaseSizeBeforeCreate = chauffeurRepository.findAll().size();
 
         // Create the Chauffeur with an existing ID
-        chauffeur.setId(1L);
+        chauffeur.setId(null);
         ChauffeurDTO chauffeurDTO = chauffeurMapper.toDto(chauffeur);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -295,7 +295,7 @@ public class ChauffeurResourceIT {
         restChauffeurMockMvc.perform(get("/api/chauffeurs?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(chauffeur.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(chauffeur.getId())))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
@@ -304,7 +304,7 @@ public class ChauffeurResourceIT {
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getChauffeur() throws Exception {
@@ -315,7 +315,7 @@ public class ChauffeurResourceIT {
         restChauffeurMockMvc.perform(get("/api/chauffeurs/{id}", chauffeur.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(chauffeur.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(chauffeur.getId()))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
@@ -332,7 +332,7 @@ public class ChauffeurResourceIT {
         // Initialize the database
         chauffeurRepository.saveAndFlush(chauffeur);
 
-        Long id = chauffeur.getId();
+        String id = chauffeur.getId();
 
         defaultChauffeurShouldBeFound("id.equals=" + id);
         defaultChauffeurShouldNotBeFound("id.notEquals=" + id);
@@ -793,7 +793,7 @@ public class ChauffeurResourceIT {
         restChauffeurMockMvc.perform(get("/api/chauffeurs?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(chauffeur.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(chauffeur.getId())))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))

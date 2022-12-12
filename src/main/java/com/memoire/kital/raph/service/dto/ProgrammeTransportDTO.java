@@ -9,8 +9,8 @@ import java.io.Serializable;
  * A DTO for the {@link com.memoire.kital.raph.domain.ProgrammeTransport} entity.
  */
 public class ProgrammeTransportDTO implements Serializable {
-    
-    private Long id;
+
+    private String id;
 
     @NotNull
     private Instant heurDepart;
@@ -19,15 +19,15 @@ public class ProgrammeTransportDTO implements Serializable {
     private LocalDate dateDepart;
 
 
-    private Long groupeTransportId;
+    private String groupeTransportId;
 
-    private Long busId;
-    
-    public Long getId() {
+    private String busId;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,19 +47,19 @@ public class ProgrammeTransportDTO implements Serializable {
         this.dateDepart = dateDepart;
     }
 
-    public Long getGroupeTransportId() {
+    public String getGroupeTransportId() {
         return groupeTransportId;
     }
 
-    public void setGroupeTransportId(Long groupeTransportId) {
+    public void setGroupeTransportId(String groupeTransportId) {
         this.groupeTransportId = groupeTransportId;
     }
 
-    public Long getBusId() {
+    public String getBusId() {
         return busId;
     }
 
-    public void setBusId(Long busId) {
+    public void setBusId(String busId) {
         this.busId = busId;
     }
 

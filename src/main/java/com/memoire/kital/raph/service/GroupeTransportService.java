@@ -42,12 +42,12 @@ public interface GroupeTransportService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<GroupeTransportDTO> findOne(Long id);
+    Optional<GroupeTransportDTO> findOne(String id);
 
     /**
      * Delete the "id" groupeTransport.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

@@ -123,7 +123,7 @@ public class BusResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the busDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/buses/{id}")
-    public ResponseEntity<BusDTO> getBus(@PathVariable Long id) {
+    public ResponseEntity<BusDTO> getBus(@PathVariable String id) {
         log.debug("REST request to get Bus : {}", id);
         Optional<BusDTO> busDTO = busService.findOne(id);
         return ResponseUtil.wrapOrNotFound(busDTO);
@@ -136,7 +136,7 @@ public class BusResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/buses/{id}")
-    public ResponseEntity<Void> deleteBus(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBus(@PathVariable String id) {
         log.debug("REST request to delete Bus : {}", id);
         busService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

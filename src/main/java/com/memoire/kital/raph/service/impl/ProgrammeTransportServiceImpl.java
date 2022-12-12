@@ -37,7 +37,7 @@ public class ProgrammeTransportServiceImpl implements ProgrammeTransportService 
     public ProgrammeTransportDTO save(ProgrammeTransportDTO programmeTransportDTO) {
         log.debug("Request to save ProgrammeTransport : {}", programmeTransportDTO);
         ProgrammeTransport programmeTransport = programmeTransportMapper.toEntity(programmeTransportDTO);
-        programmeTransport = programmeTransportRepository.save(programmeTransport);
+        programmeTransport = programmeTransportRepository.saveAndFlush(programmeTransport);
         return programmeTransportMapper.toDto(programmeTransport);
     }
 
@@ -52,14 +52,14 @@ public class ProgrammeTransportServiceImpl implements ProgrammeTransportService 
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ProgrammeTransportDTO> findOne(Long id) {
+    public Optional<ProgrammeTransportDTO> findOne(String id) {
         log.debug("Request to get ProgrammeTransport : {}", id);
         return programmeTransportRepository.findById(id)
             .map(programmeTransportMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete ProgrammeTransport : {}", id);
         programmeTransportRepository.deleteById(id);
     }

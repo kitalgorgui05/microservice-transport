@@ -89,16 +89,13 @@ public class GroupeTransportQueryService extends QueryService<GroupeTransport> {
         Specification<GroupeTransport> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), GroupeTransport_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), GroupeTransport_.id));
             }
             if (criteria.getNom() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNom(), GroupeTransport_.nom));
             }
             if (criteria.getNombreEleves() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getNombreEleves(), GroupeTransport_.nombreEleves));
-            }
-            if (criteria.getEtat() != null) {
-                specification = specification.and(buildSpecification(criteria.getEtat(), GroupeTransport_.etat));
             }
             if (criteria.getZonesId() != null) {
                 specification = specification.and(buildSpecification(criteria.getZonesId(),

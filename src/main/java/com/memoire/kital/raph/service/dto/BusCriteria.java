@@ -21,10 +21,7 @@ import io.github.jhipster.service.filter.StringFilter;
  * fix type specific filters.
  */
 public class BusCriteria implements Serializable, Criteria {
-
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private StringFilter matricule;
 
@@ -32,7 +29,7 @@ public class BusCriteria implements Serializable, Criteria {
 
     private IntegerFilter nombreplace;
 
-    private LongFilter chauffeurId;
+    private StringFilter chauffeurId;
 
     public BusCriteria() {
     }
@@ -50,11 +47,11 @@ public class BusCriteria implements Serializable, Criteria {
         return new BusCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 
@@ -82,11 +79,11 @@ public class BusCriteria implements Serializable, Criteria {
         this.nombreplace = nombreplace;
     }
 
-    public LongFilter getChauffeurId() {
+    public StringFilter getChauffeurId() {
         return chauffeurId;
     }
 
-    public void setChauffeurId(LongFilter chauffeurId) {
+    public void setChauffeurId(StringFilter chauffeurId) {
         this.chauffeurId = chauffeurId;
     }
 

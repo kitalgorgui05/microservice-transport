@@ -15,7 +15,7 @@ public class ZoneMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+        String id = null;
         assertThat(zoneMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(zoneMapper.fromId(null)).isNull();
     }

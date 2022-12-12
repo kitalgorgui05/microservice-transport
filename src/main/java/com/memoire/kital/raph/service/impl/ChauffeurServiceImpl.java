@@ -37,7 +37,7 @@ public class ChauffeurServiceImpl implements ChauffeurService {
     public ChauffeurDTO save(ChauffeurDTO chauffeurDTO) {
         log.debug("Request to save Chauffeur : {}", chauffeurDTO);
         Chauffeur chauffeur = chauffeurMapper.toEntity(chauffeurDTO);
-        chauffeur = chauffeurRepository.save(chauffeur);
+        chauffeur = chauffeurRepository.saveAndFlush(chauffeur);
         return chauffeurMapper.toDto(chauffeur);
     }
 
@@ -52,14 +52,14 @@ public class ChauffeurServiceImpl implements ChauffeurService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ChauffeurDTO> findOne(Long id) {
+    public Optional<ChauffeurDTO> findOne(String id) {
         log.debug("Request to get Chauffeur : {}", id);
         return chauffeurRepository.findById(id)
             .map(chauffeurMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete Chauffeur : {}", id);
         chauffeurRepository.deleteById(id);
     }

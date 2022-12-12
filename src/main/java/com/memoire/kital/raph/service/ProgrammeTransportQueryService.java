@@ -89,7 +89,7 @@ public class ProgrammeTransportQueryService extends QueryService<ProgrammeTransp
         Specification<ProgrammeTransport> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), ProgrammeTransport_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), ProgrammeTransport_.id));
             }
             if (criteria.getHeurDepart() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getHeurDepart(), ProgrammeTransport_.heurDepart));

@@ -89,7 +89,7 @@ public class ChauffeurQueryService extends QueryService<Chauffeur> {
         Specification<Chauffeur> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), Chauffeur_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), Chauffeur_.id));
             }
             if (criteria.getPrenom() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPrenom(), Chauffeur_.prenom));

@@ -15,7 +15,7 @@ public class ProgrammeTransportMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+        String id = null;
         assertThat(programmeTransportMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(programmeTransportMapper.fromId(null)).isNull();
     }

@@ -35,12 +35,12 @@ public interface BusService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<BusDTO> findOne(Long id);
+    Optional<BusDTO> findOne(String id);
 
     /**
      * Delete the "id" bus.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

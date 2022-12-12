@@ -18,7 +18,7 @@ public interface BusMapper extends EntityMapper<BusDTO, Bus> {
     @Mapping(source = "chauffeurId", target = "chauffeur")
     Bus toEntity(BusDTO busDTO);
 
-    default Bus fromId(Long id) {
+    default Bus fromId(String id) {
         if (id == null) {
             return null;
         }

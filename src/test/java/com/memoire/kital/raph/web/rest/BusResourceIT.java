@@ -125,7 +125,7 @@ public class BusResourceIT {
         int databaseSizeBeforeCreate = busRepository.findAll().size();
 
         // Create the Bus with an existing ID
-        bus.setId(1L);
+        bus.setId(null);
         BusDTO busDTO = busMapper.toDto(bus);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -210,12 +210,12 @@ public class BusResourceIT {
         restBusMockMvc.perform(get("/api/buses?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(bus.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(bus.getId())))
             .andExpect(jsonPath("$.[*].matricule").value(hasItem(DEFAULT_MATRICULE)))
             .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
             .andExpect(jsonPath("$.[*].nombreplace").value(hasItem(DEFAULT_NOMBREPLACE)));
     }
-    
+
     @Test
     @Transactional
     public void getBus() throws Exception {
@@ -226,7 +226,7 @@ public class BusResourceIT {
         restBusMockMvc.perform(get("/api/buses/{id}", bus.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(bus.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(bus.getId()))
             .andExpect(jsonPath("$.matricule").value(DEFAULT_MATRICULE))
             .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
             .andExpect(jsonPath("$.nombreplace").value(DEFAULT_NOMBREPLACE));
@@ -239,7 +239,7 @@ public class BusResourceIT {
         // Initialize the database
         busRepository.saveAndFlush(bus);
 
-        Long id = bus.getId();
+        String id = bus.getId();
 
         defaultBusShouldBeFound("id.equals=" + id);
         defaultBusShouldNotBeFound("id.notEquals=" + id);
@@ -523,7 +523,7 @@ public class BusResourceIT {
         em.flush();
         bus.setChauffeur(chauffeur);
         busRepository.saveAndFlush(bus);
-        Long chauffeurId = chauffeur.getId();
+        String chauffeurId = chauffeur.getId();
 
         // Get all the busList where chauffeur equals to chauffeurId
         defaultBusShouldBeFound("chauffeurId.equals=" + chauffeurId);
@@ -539,7 +539,7 @@ public class BusResourceIT {
         restBusMockMvc.perform(get("/api/buses?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(bus.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(bus.getId())))
             .andExpect(jsonPath("$.[*].matricule").value(hasItem(DEFAULT_MATRICULE)))
             .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
             .andExpect(jsonPath("$.[*].nombreplace").value(hasItem(DEFAULT_NOMBREPLACE)));

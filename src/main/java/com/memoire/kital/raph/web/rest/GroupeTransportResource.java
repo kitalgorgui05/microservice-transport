@@ -123,7 +123,7 @@ public class GroupeTransportResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the groupeTransportDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/groupe-transports/{id}")
-    public ResponseEntity<GroupeTransportDTO> getGroupeTransport(@PathVariable Long id) {
+    public ResponseEntity<GroupeTransportDTO> getGroupeTransport(@PathVariable String id) {
         log.debug("REST request to get GroupeTransport : {}", id);
         Optional<GroupeTransportDTO> groupeTransportDTO = groupeTransportService.findOne(id);
         return ResponseUtil.wrapOrNotFound(groupeTransportDTO);
@@ -136,7 +136,7 @@ public class GroupeTransportResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/groupe-transports/{id}")
-    public ResponseEntity<Void> deleteGroupeTransport(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteGroupeTransport(@PathVariable String id) {
         log.debug("REST request to delete GroupeTransport : {}", id);
         groupeTransportService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

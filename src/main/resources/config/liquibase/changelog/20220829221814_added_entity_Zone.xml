@@ -13,7 +13,7 @@
     -->
     <changeSet id="20220829221814-1" author="jhipster">
         <createTable tableName="zones">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="libelle" type="varchar(100)">
@@ -44,7 +44,7 @@
                   file="config/liquibase/fake-data/zones.csv"
                   separator=";"
                   tableName="zones">
-            <column name="id" type="numeric"/>
+            <column name="id" type="string"/>
             <column name="libelle" type="string"/>
             <column name="description" type="clob"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

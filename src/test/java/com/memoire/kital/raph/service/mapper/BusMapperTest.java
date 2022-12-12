@@ -15,7 +15,7 @@ public class BusMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+        String id = null;
         assertThat(busMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(busMapper.fromId(null)).isNull();
     }

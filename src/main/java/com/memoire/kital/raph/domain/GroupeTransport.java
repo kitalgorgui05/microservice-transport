@@ -1,7 +1,10 @@
 package com.memoire.kital.raph.domain;
 
+import com.memoire.kital.raph.utils.SizeMapper;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -17,25 +20,21 @@ import java.util.Set;
 @Table(name = "groupe_transports")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class GroupeTransport implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid",strategy = "uuid")
+    @Column(name = "id",unique = true)
+    private String id;
 
     @NotNull
-    @Size(min = 3, max = 10)
-    @Column(name = "nom", length = 10, nullable = false, unique = true)
+    @Size(min = SizeMapper.SizeGroupeTransport.MIN, max = SizeMapper.SizeGroupeTransport.MAX)
+    @Column(name = "nom", length = SizeMapper.SizeGroupeTransport.MAX, nullable = false, unique = true)
     private String nom;
 
     @NotNull
     @Column(name = "nombre_eleves", nullable = false)
     private Integer nombreEleves;
-
-    @Column(name = "etat")
-    private Boolean etat;
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @NotNull
@@ -45,11 +44,11 @@ public class GroupeTransport implements Serializable {
     private Set<Zone> zones = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,19 +76,6 @@ public class GroupeTransport implements Serializable {
 
     public void setNombreEleves(Integer nombreEleves) {
         this.nombreEleves = nombreEleves;
-    }
-
-    public Boolean isEtat() {
-        return etat;
-    }
-
-    public GroupeTransport etat(Boolean etat) {
-        this.etat = etat;
-        return this;
-    }
-
-    public void setEtat(Boolean etat) {
-        this.etat = etat;
     }
 
     public Set<Zone> getZones() {
@@ -141,7 +127,6 @@ public class GroupeTransport implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", nombreEleves=" + getNombreEleves() +
-            ", etat='" + isEtat() + "'" +
             "}";
     }
 }

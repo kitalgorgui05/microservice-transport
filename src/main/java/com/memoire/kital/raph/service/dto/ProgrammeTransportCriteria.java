@@ -23,18 +23,15 @@ import io.github.jhipster.service.filter.LocalDateFilter;
  * fix type specific filters.
  */
 public class ProgrammeTransportCriteria implements Serializable, Criteria {
-
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private InstantFilter heurDepart;
 
     private LocalDateFilter dateDepart;
 
-    private LongFilter groupeTransportId;
+    private StringFilter groupeTransportId;
 
-    private LongFilter busId;
+    private StringFilter busId;
 
     public ProgrammeTransportCriteria() {
     }
@@ -52,11 +49,11 @@ public class ProgrammeTransportCriteria implements Serializable, Criteria {
         return new ProgrammeTransportCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 
@@ -76,19 +73,19 @@ public class ProgrammeTransportCriteria implements Serializable, Criteria {
         this.dateDepart = dateDepart;
     }
 
-    public LongFilter getGroupeTransportId() {
+    public StringFilter getGroupeTransportId() {
         return groupeTransportId;
     }
 
-    public void setGroupeTransportId(LongFilter groupeTransportId) {
+    public void setGroupeTransportId(StringFilter groupeTransportId) {
         this.groupeTransportId = groupeTransportId;
     }
 
-    public LongFilter getBusId() {
+    public StringFilter getBusId() {
         return busId;
     }
 
-    public void setBusId(LongFilter busId) {
+    public void setBusId(StringFilter busId) {
         this.busId = busId;
     }
 

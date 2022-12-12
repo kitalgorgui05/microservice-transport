@@ -123,7 +123,7 @@ public class ChauffeurResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the chauffeurDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/chauffeurs/{id}")
-    public ResponseEntity<ChauffeurDTO> getChauffeur(@PathVariable Long id) {
+    public ResponseEntity<ChauffeurDTO> getChauffeur(@PathVariable String id) {
         log.debug("REST request to get Chauffeur : {}", id);
         Optional<ChauffeurDTO> chauffeurDTO = chauffeurService.findOne(id);
         return ResponseUtil.wrapOrNotFound(chauffeurDTO);
@@ -136,7 +136,7 @@ public class ChauffeurResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/chauffeurs/{id}")
-    public ResponseEntity<Void> deleteChauffeur(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteChauffeur(@PathVariable String id) {
         log.debug("REST request to delete Chauffeur : {}", id);
         chauffeurService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

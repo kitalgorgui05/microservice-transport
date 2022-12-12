@@ -35,12 +35,12 @@ public interface ChauffeurService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<ChauffeurDTO> findOne(Long id);
+    Optional<ChauffeurDTO> findOne(String id);
 
     /**
      * Delete the "id" chauffeur.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

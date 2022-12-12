@@ -1,11 +1,11 @@
-id;nom;nombre_eleves;etat
-1;Station;15954;false
-2;transmitte;73291;true
-3;technologi;93277;false
-4;monitor;73302;true
-5;benchmark ;27431;false
-6;Michigan M;54774;false
-7;Jordan;47710;false
-8;Technician;25401;true
-9;Generic So;85148;false
-10;Pa'anga;94628;false
+id;nom;nombre_eleves
+1;Station;15954
+2;transmitte;73291
+3;technologi;93277
+4;monitor;73302
+5;benchmark ;27431
+6;Michigan M;54774
+7;Jordan;47710
+8;Technician;25401
+9;Generic So;85148
+10;Pa'anga;94628

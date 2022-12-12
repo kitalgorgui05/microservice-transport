@@ -123,7 +123,7 @@ public class ZoneResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the zoneDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/zones/{id}")
-    public ResponseEntity<ZoneDTO> getZone(@PathVariable Long id) {
+    public ResponseEntity<ZoneDTO> getZone(@PathVariable String id) {
         log.debug("REST request to get Zone : {}", id);
         Optional<ZoneDTO> zoneDTO = zoneService.findOne(id);
         return ResponseUtil.wrapOrNotFound(zoneDTO);
@@ -136,7 +136,7 @@ public class ZoneResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/zones/{id}")
-    public ResponseEntity<Void> deleteZone(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteZone(@PathVariable String id) {
         log.debug("REST request to delete Zone : {}", id);
         zoneService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

@@ -124,7 +124,7 @@ public class ProgrammeTransportResourceIT {
         int databaseSizeBeforeCreate = programmeTransportRepository.findAll().size();
 
         // Create the ProgrammeTransport with an existing ID
-        programmeTransport.setId(1L);
+        programmeTransport.setId(null);
         ProgrammeTransportDTO programmeTransportDTO = programmeTransportMapper.toDto(programmeTransport);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -189,11 +189,11 @@ public class ProgrammeTransportResourceIT {
         restProgrammeTransportMockMvc.perform(get("/api/programme-transports?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(programmeTransport.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(programmeTransport.getId())))
             .andExpect(jsonPath("$.[*].heurDepart").value(hasItem(DEFAULT_HEUR_DEPART.toString())))
             .andExpect(jsonPath("$.[*].dateDepart").value(hasItem(DEFAULT_DATE_DEPART.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getProgrammeTransport() throws Exception {
@@ -204,7 +204,7 @@ public class ProgrammeTransportResourceIT {
         restProgrammeTransportMockMvc.perform(get("/api/programme-transports/{id}", programmeTransport.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(programmeTransport.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(programmeTransport.getId()))
             .andExpect(jsonPath("$.heurDepart").value(DEFAULT_HEUR_DEPART.toString()))
             .andExpect(jsonPath("$.dateDepart").value(DEFAULT_DATE_DEPART.toString()));
     }
@@ -216,7 +216,7 @@ public class ProgrammeTransportResourceIT {
         // Initialize the database
         programmeTransportRepository.saveAndFlush(programmeTransport);
 
-        Long id = programmeTransport.getId();
+        String id = programmeTransport.getId();
 
         defaultProgrammeTransportShouldBeFound("id.equals=" + id);
         defaultProgrammeTransportShouldNotBeFound("id.notEquals=" + id);
@@ -396,7 +396,7 @@ public class ProgrammeTransportResourceIT {
         em.flush();
         programmeTransport.setGroupeTransport(groupeTransport);
         programmeTransportRepository.saveAndFlush(programmeTransport);
-        Long groupeTransportId = groupeTransport.getId();
+        String groupeTransportId = groupeTransport.getId();
 
         // Get all the programmeTransportList where groupeTransport equals to groupeTransportId
         defaultProgrammeTransportShouldBeFound("groupeTransportId.equals=" + groupeTransportId);
@@ -416,7 +416,7 @@ public class ProgrammeTransportResourceIT {
         em.flush();
         programmeTransport.setBus(bus);
         programmeTransportRepository.saveAndFlush(programmeTransport);
-        Long busId = bus.getId();
+        String busId = bus.getId();
 
         // Get all the programmeTransportList where bus equals to busId
         defaultProgrammeTransportShouldBeFound("busId.equals=" + busId);
@@ -432,7 +432,7 @@ public class ProgrammeTransportResourceIT {
         restProgrammeTransportMockMvc.perform(get("/api/programme-transports?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(programmeTransport.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(programmeTransport.getId())))
             .andExpect(jsonPath("$.[*].heurDepart").value(hasItem(DEFAULT_HEUR_DEPART.toString())))
             .andExpect(jsonPath("$.[*].dateDepart").value(hasItem(DEFAULT_DATE_DEPART.toString())));
 

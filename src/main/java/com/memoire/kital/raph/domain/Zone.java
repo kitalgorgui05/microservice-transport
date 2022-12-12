@@ -1,8 +1,11 @@
 package com.memoire.kital.raph.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.memoire.kital.raph.utils.SizeMapper;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -18,19 +21,19 @@ import java.util.Set;
 @Table(name = "zones")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Zone implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid",strategy = "uuid")
+    @Column(name = "id",unique = true)
+    private String id;
 
     @NotNull
-    @Size(min = 2, max = 100)
-    @Column(name = "libelle", length = 100, nullable = false)
+    @Size(min = SizeMapper.SizeZone.MIN, max = SizeMapper.SizeZone.MAX)
+    @Column(name = "libelle", length = SizeMapper.SizeZone.MAX, nullable = false)
     private String libelle;
 
-    
+
     @Lob
     @Column(name = "description", nullable = false)
     private String description;
@@ -41,11 +44,11 @@ public class Zone implements Serializable {
     private Set<GroupeTransport> groupetransports = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

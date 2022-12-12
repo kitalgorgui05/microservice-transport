@@ -15,7 +15,7 @@ public class GroupeTransportMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+        String id = null;
         assertThat(groupeTransportMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(groupeTransportMapper.fromId(null)).isNull();
     }

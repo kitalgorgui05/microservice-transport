@@ -159,7 +159,7 @@ public class GroupeTransportResourceIT {
         int databaseSizeBeforeCreate = groupeTransportRepository.findAll().size();
 
         // Create the GroupeTransport with an existing ID
-        groupeTransport.setId(1L);
+        groupeTransport.setId(null);
         GroupeTransportDTO groupeTransportDTO = groupeTransportMapper.toDto(groupeTransport);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -224,12 +224,12 @@ public class GroupeTransportResourceIT {
         restGroupeTransportMockMvc.perform(get("/api/groupe-transports?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(groupeTransport.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(groupeTransport.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombreEleves").value(hasItem(DEFAULT_NOMBRE_ELEVES)))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.booleanValue())));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllGroupeTransportsWithEagerRelationshipsIsEnabled() throws Exception {
         when(groupeTransportServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
@@ -260,7 +260,7 @@ public class GroupeTransportResourceIT {
         restGroupeTransportMockMvc.perform(get("/api/groupe-transports/{id}", groupeTransport.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(groupeTransport.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(groupeTransport.getId()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.nombreEleves").value(DEFAULT_NOMBRE_ELEVES))
             .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.booleanValue()));
@@ -273,7 +273,7 @@ public class GroupeTransportResourceIT {
         // Initialize the database
         groupeTransportRepository.saveAndFlush(groupeTransport);
 
-        Long id = groupeTransport.getId();
+        String id = groupeTransport.getId();
 
         defaultGroupeTransportShouldBeFound("id.equals=" + id);
         defaultGroupeTransportShouldNotBeFound("id.notEquals=" + id);
@@ -525,9 +525,9 @@ public class GroupeTransportResourceIT {
     @Transactional
     public void getAllGroupeTransportsByZonesIsEqualToSomething() throws Exception {
         // Get already existing entity
-        Zone zones = groupeTransport.getZones();
+        Zone zones = (Zone) groupeTransport.getZones();
         groupeTransportRepository.saveAndFlush(groupeTransport);
-        Long zonesId = zones.getId();
+        String zonesId = zones.getId();
 
         // Get all the groupeTransportList where zones equals to zonesId
         defaultGroupeTransportShouldBeFound("zonesId.equals=" + zonesId);
@@ -543,7 +543,7 @@ public class GroupeTransportResourceIT {
         restGroupeTransportMockMvc.perform(get("/api/groupe-transports?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(groupeTransport.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(groupeTransport.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombreEleves").value(hasItem(DEFAULT_NOMBRE_ELEVES)))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.booleanValue())));

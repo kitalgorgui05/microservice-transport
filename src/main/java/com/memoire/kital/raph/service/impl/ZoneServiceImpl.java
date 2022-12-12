@@ -37,7 +37,7 @@ public class ZoneServiceImpl implements ZoneService {
     public ZoneDTO save(ZoneDTO zoneDTO) {
         log.debug("Request to save Zone : {}", zoneDTO);
         Zone zone = zoneMapper.toEntity(zoneDTO);
-        zone = zoneRepository.save(zone);
+        zone = zoneRepository.saveAndFlush(zone);
         return zoneMapper.toDto(zone);
     }
 
@@ -52,14 +52,14 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ZoneDTO> findOne(Long id) {
+    public Optional<ZoneDTO> findOne(String id) {
         log.debug("Request to get Zone : {}", id);
         return zoneRepository.findById(id)
             .map(zoneMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete Zone : {}", id);
         zoneRepository.deleteById(id);
     }

@@ -21,18 +21,13 @@ import io.github.jhipster.service.filter.StringFilter;
  * fix type specific filters.
  */
 public class GroupeTransportCriteria implements Serializable, Criteria {
-
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private StringFilter nom;
 
     private IntegerFilter nombreEleves;
 
-    private BooleanFilter etat;
-
-    private LongFilter zonesId;
+    private StringFilter zonesId;
 
     public GroupeTransportCriteria() {
     }
@@ -41,7 +36,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.nom = other.nom == null ? null : other.nom.copy();
         this.nombreEleves = other.nombreEleves == null ? null : other.nombreEleves.copy();
-        this.etat = other.etat == null ? null : other.etat.copy();
         this.zonesId = other.zonesId == null ? null : other.zonesId.copy();
     }
 
@@ -50,11 +44,11 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
         return new GroupeTransportCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 
@@ -74,19 +68,11 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
         this.nombreEleves = nombreEleves;
     }
 
-    public BooleanFilter getEtat() {
-        return etat;
-    }
-
-    public void setEtat(BooleanFilter etat) {
-        this.etat = etat;
-    }
-
-    public LongFilter getZonesId() {
+    public StringFilter getZonesId() {
         return zonesId;
     }
 
-    public void setZonesId(LongFilter zonesId) {
+    public void setZonesId(StringFilter zonesId) {
         this.zonesId = zonesId;
     }
 
@@ -104,7 +90,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(nom, that.nom) &&
             Objects.equals(nombreEleves, that.nombreEleves) &&
-            Objects.equals(etat, that.etat) &&
             Objects.equals(zonesId, that.zonesId);
     }
 
@@ -114,7 +99,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
         id,
         nom,
         nombreEleves,
-        etat,
         zonesId
         );
     }
@@ -126,7 +110,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (nom != null ? "nom=" + nom + ", " : "") +
                 (nombreEleves != null ? "nombreEleves=" + nombreEleves + ", " : "") +
-                (etat != null ? "etat=" + etat + ", " : "") +
                 (zonesId != null ? "zonesId=" + zonesId + ", " : "") +
             "}";
     }

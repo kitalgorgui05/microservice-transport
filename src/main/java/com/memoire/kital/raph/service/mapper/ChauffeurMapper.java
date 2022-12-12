@@ -14,7 +14,7 @@ public interface ChauffeurMapper extends EntityMapper<ChauffeurDTO, Chauffeur> {
 
 
 
-    default Chauffeur fromId(Long id) {
+    default Chauffeur fromId(String id) {
         if (id == null) {
             return null;
         }

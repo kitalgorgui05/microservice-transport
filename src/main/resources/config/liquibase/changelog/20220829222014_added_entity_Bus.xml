@@ -13,7 +13,7 @@
     -->
     <changeSet id="20220829222014-1" author="jhipster">
         <createTable tableName="bus">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="matricule" type="varchar(255)">
@@ -25,7 +25,7 @@
             <column name="nombreplace" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="chauffeur_id" type="bigint">
+            <column name="chauffeur_id" type="varchar(255)">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_bus_chauffeur_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -50,7 +50,7 @@
                   file="config/liquibase/fake-data/bus.csv"
                   separator=";"
                   tableName="bus">
-            <column name="id" type="numeric"/>
+            <column name="id" type="string"/>
             <column name="matricule" type="string"/>
             <column name="numero" type="string"/>
             <column name="nombreplace" type="numeric"/>

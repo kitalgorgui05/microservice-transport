@@ -7,8 +7,8 @@ import java.io.Serializable;
  * A DTO for the {@link com.memoire.kital.raph.domain.Bus} entity.
  */
 public class BusDTO implements Serializable {
-    
-    private Long id;
+
+    private String id;
 
     @NotNull
     private String matricule;
@@ -20,13 +20,13 @@ public class BusDTO implements Serializable {
     private Integer nombreplace;
 
 
-    private Long chauffeurId;
-    
-    public Long getId() {
+    private String chauffeurId;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -54,11 +54,11 @@ public class BusDTO implements Serializable {
         this.nombreplace = nombreplace;
     }
 
-    public Long getChauffeurId() {
+    public String getChauffeurId() {
         return chauffeurId;
     }
 
-    public void setChauffeurId(Long chauffeurId) {
+    public void setChauffeurId(String chauffeurId) {
         this.chauffeurId = chauffeurId;
     }
 

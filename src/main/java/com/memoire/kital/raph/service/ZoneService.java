@@ -35,12 +35,12 @@ public interface ZoneService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<ZoneDTO> findOne(Long id);
+    Optional<ZoneDTO> findOne(String id);
 
     /**
      * Delete the "id" zone.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

@@ -13,7 +13,7 @@
     -->
     <changeSet id="20220829221714-1" author="jhipster">
         <createTable tableName="groupe_transports">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nom" type="varchar(10)">
@@ -22,9 +22,6 @@
             <column name="nombre_eleves" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="etat" type="boolean">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -32,16 +29,16 @@
     <changeSet id="20220829221714-1-relations" author="jhipster">
 
         <createTable tableName="groupe_transports_zones">
-            <column name="zones_id" type="bigint">
+            <column name="zones_id" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="groupe_transport_id" type="bigint">
+            <column name="groupe_transport_id" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
         <addPrimaryKey columnNames="groupe_transport_id, zones_id" tableName="groupe_transports_zones"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
@@ -58,10 +55,9 @@
                   file="config/liquibase/fake-data/groupe_transports.csv"
                   separator=";"
                   tableName="groupe_transports">
-            <column name="id" type="numeric"/>
+            <column name="id" type="string"/>
             <column name="nom" type="string"/>
             <column name="nombre_eleves" type="numeric"/>
-            <column name="etat" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

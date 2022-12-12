@@ -9,8 +9,8 @@ import javax.persistence.Lob;
  * A DTO for the {@link com.memoire.kital.raph.domain.Chauffeur} entity.
  */
 public class ChauffeurDTO implements Serializable {
-    
-    private Long id;
+
+    private String id;
 
     @NotNull
     @Size(min = 3, max = 20)
@@ -35,16 +35,16 @@ public class ChauffeurDTO implements Serializable {
     @Size(min = 7, max = 12)
     private String telephone;
 
-    
+
     @Lob
     private String adresse;
 
-    
-    public Long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

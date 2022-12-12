@@ -15,7 +15,7 @@ public interface GroupeTransportMapper extends EntityMapper<GroupeTransportDTO, 
 
     @Mapping(target = "removeZones", ignore = true)
 
-    default GroupeTransport fromId(Long id) {
+    default GroupeTransport fromId(String id) {
         if (id == null) {
             return null;
         }

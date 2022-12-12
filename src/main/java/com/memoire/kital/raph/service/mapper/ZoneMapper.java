@@ -17,7 +17,7 @@ public interface ZoneMapper extends EntityMapper<ZoneDTO, Zone> {
     @Mapping(target = "removeGroupetransports", ignore = true)
     Zone toEntity(ZoneDTO zoneDTO);
 
-    default Zone fromId(Long id) {
+    default Zone fromId(String id) {
         if (id == null) {
             return null;
         }

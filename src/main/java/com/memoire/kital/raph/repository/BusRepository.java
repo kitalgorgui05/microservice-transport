@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface BusRepository extends JpaRepository<Bus, Long>, JpaSpecificationExecutor<Bus> {
+public interface BusRepository extends JpaRepository<Bus, String>, JpaSpecificationExecutor<Bus> {
 }

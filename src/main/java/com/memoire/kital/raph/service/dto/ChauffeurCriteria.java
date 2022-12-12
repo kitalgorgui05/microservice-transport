@@ -23,9 +23,7 @@ import io.github.jhipster.service.filter.InstantFilter;
  */
 public class ChauffeurCriteria implements Serializable, Criteria {
 
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private StringFilter prenom;
 
@@ -57,11 +55,11 @@ public class ChauffeurCriteria implements Serializable, Criteria {
         return new ChauffeurCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 

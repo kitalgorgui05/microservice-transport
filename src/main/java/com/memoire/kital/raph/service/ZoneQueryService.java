@@ -89,7 +89,7 @@ public class ZoneQueryService extends QueryService<Zone> {
         Specification<Zone> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), Zone_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), Zone_.id));
             }
             if (criteria.getLibelle() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLibelle(), Zone_.libelle));

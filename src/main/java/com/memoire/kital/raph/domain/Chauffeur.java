@@ -1,7 +1,10 @@
 package com.memoire.kital.raph.domain;
 
+import com.memoire.kital.raph.utils.SizeMapper;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,21 +19,20 @@ import java.time.Instant;
 @Table(name = "chauffeurs")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Chauffeur implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid",strategy = "uuid")
+    @Column(name = "id", unique = true)
+    private String id;
     @NotNull
-    @Size(min = 3, max = 20)
-    @Column(name = "prenom", length = 20, nullable = false)
+    @Size(min = SizeMapper.SizChauffeurNomAndPrenom.MIN, max = SizeMapper.SizChauffeurNomAndPrenom.MAX)
+    @Column(name = "prenom", length = SizeMapper.SizChauffeurNomAndPrenom.MAX, nullable = false)
     private String prenom;
 
     @NotNull
-    @Size(min = 3, max = 20)
-    @Column(name = "nom", length = 20, nullable = false)
+    @Size(min = SizeMapper.SizChauffeurNomAndPrenom.MIN, max = SizeMapper.SizChauffeurNomAndPrenom.MAX)
+    @Column(name = "nom", length = SizeMapper.SizChauffeurNomAndPrenom.MAX, nullable = false)
     private String nom;
 
     @NotNull
@@ -38,31 +40,31 @@ public class Chauffeur implements Serializable {
     private Instant dateNaissance;
 
     @NotNull
-    @Size(min = 2, max = 20)
-    @Column(name = "lieu_naissance", length = 20, nullable = false)
+    @Size(min = SizeMapper.SizChauffeurLieuNaissance.MIN, max = SizeMapper.SizChauffeurLieuNaissance.MAX)
+    @Column(name = "lieu_naissance", length = SizeMapper.SizChauffeurLieuNaissance.MAX, nullable = false)
     private String lieuNaissance;
 
     @NotNull
-    @Size(min = 10, max = 14)
-    @Column(name = "cin", length = 14, nullable = false)
+    @Size(min = SizeMapper.SizChauffeurCin.MIN, max = SizeMapper.SizChauffeurCin.MAX)
+    @Column(name = "cin", length = SizeMapper.SizChauffeurCin.MAX, nullable = false)
     private String cin;
 
     @NotNull
-    @Size(min = 7, max = 12)
+    @Size(min = SizeMapper.SizChauffeurTelephone.MIN, max = SizeMapper.SizChauffeurTelephone.MAX)
     @Column(name = "telephone", length = 12, nullable = false)
     private String telephone;
 
-    
+
     @Lob
     @Column(name = "adresse", nullable = false)
     private String adresse;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

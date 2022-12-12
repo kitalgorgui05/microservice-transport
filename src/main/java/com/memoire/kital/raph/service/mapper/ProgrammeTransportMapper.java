@@ -20,7 +20,7 @@ public interface ProgrammeTransportMapper extends EntityMapper<ProgrammeTranspor
     @Mapping(source = "busId", target = "bus")
     ProgrammeTransport toEntity(ProgrammeTransportDTO programmeTransportDTO);
 
-    default ProgrammeTransport fromId(Long id) {
+    default ProgrammeTransport fromId(String id) {
         if (id == null) {
             return null;
         }

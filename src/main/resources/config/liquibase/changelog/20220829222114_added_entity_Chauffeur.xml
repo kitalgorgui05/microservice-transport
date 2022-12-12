@@ -13,7 +13,7 @@
     -->
     <changeSet id="20220829222114-1" author="jhipster">
         <createTable tableName="chauffeurs">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="prenom" type="varchar(20)">
@@ -60,7 +60,7 @@
                   file="config/liquibase/fake-data/chauffeurs.csv"
                   separator=";"
                   tableName="chauffeurs">
-            <column name="id" type="numeric"/>
+            <column name="id" type="string"/>
             <column name="prenom" type="string"/>
             <column name="nom" type="string"/>
             <column name="date_naissance" type="datetime"/>

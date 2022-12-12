@@ -37,7 +37,7 @@ public class GroupeTransportServiceImpl implements GroupeTransportService {
     public GroupeTransportDTO save(GroupeTransportDTO groupeTransportDTO) {
         log.debug("Request to save GroupeTransport : {}", groupeTransportDTO);
         GroupeTransport groupeTransport = groupeTransportMapper.toEntity(groupeTransportDTO);
-        groupeTransport = groupeTransportRepository.save(groupeTransport);
+        groupeTransport = groupeTransportRepository.saveAndFlush(groupeTransport);
         return groupeTransportMapper.toDto(groupeTransport);
     }
 
@@ -56,14 +56,14 @@ public class GroupeTransportServiceImpl implements GroupeTransportService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<GroupeTransportDTO> findOne(Long id) {
+    public Optional<GroupeTransportDTO> findOne(String id) {
         log.debug("Request to get GroupeTransport : {}", id);
         return groupeTransportRepository.findOneWithEagerRelationships(id)
             .map(groupeTransportMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete GroupeTransport : {}", id);
         groupeTransportRepository.deleteById(id);
     }

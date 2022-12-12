@@ -13,7 +13,7 @@
     -->
     <changeSet id="20220829221914-1" author="jhipster">
         <createTable tableName="programme_transports">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="varchar(32)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="heur_depart" type="datetime">
@@ -22,10 +22,10 @@
             <column name="date_depart" type="date">
                 <constraints nullable="false" />
             </column>
-            <column name="groupe_transport_id" type="bigint">
+            <column name="groupe_transport_id" type="varchar(32)">
                 <constraints nullable="true" />
             </column>
-            <column name="bus_id" type="bigint">
+            <column name="bus_id" type="varchar(32)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -51,7 +51,7 @@
                   file="config/liquibase/fake-data/programme_transports.csv"
                   separator=";"
                   tableName="programme_transports">
-            <column name="id" type="numeric"/>
+            <column name="id" type="string"/>
             <column name="heur_depart" type="datetime"/>
             <column name="date_depart" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

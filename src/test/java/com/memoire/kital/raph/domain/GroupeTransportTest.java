@@ -10,11 +10,11 @@ public class GroupeTransportTest {
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(GroupeTransport.class);
         GroupeTransport groupeTransport1 = new GroupeTransport();
-        groupeTransport1.setId(1L);
+        groupeTransport1.setId(null);
         GroupeTransport groupeTransport2 = new GroupeTransport();
         groupeTransport2.setId(groupeTransport1.getId());
         assertThat(groupeTransport1).isEqualTo(groupeTransport2);
-        groupeTransport2.setId(2L);
+        groupeTransport2.setId(null);
         assertThat(groupeTransport1).isNotEqualTo(groupeTransport2);
         groupeTransport1.setId(null);
         assertThat(groupeTransport1).isNotEqualTo(groupeTransport2);

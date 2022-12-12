@@ -9,8 +9,8 @@ import java.util.Set;
  * A DTO for the {@link com.memoire.kital.raph.domain.GroupeTransport} entity.
  */
 public class GroupeTransportDTO implements Serializable {
-    
-    private Long id;
+
+    private String id;
 
     @NotNull
     @Size(min = 3, max = 10)
@@ -19,15 +19,13 @@ public class GroupeTransportDTO implements Serializable {
     @NotNull
     private Integer nombreEleves;
 
-    private Boolean etat;
-
     private Set<ZoneDTO> zones = new HashSet<>();
-    
-    public Long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,14 +43,6 @@ public class GroupeTransportDTO implements Serializable {
 
     public void setNombreEleves(Integer nombreEleves) {
         this.nombreEleves = nombreEleves;
-    }
-
-    public Boolean isEtat() {
-        return etat;
-    }
-
-    public void setEtat(Boolean etat) {
-        this.etat = etat;
     }
 
     public Set<ZoneDTO> getZones() {
@@ -87,7 +77,6 @@ public class GroupeTransportDTO implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", nombreEleves=" + getNombreEleves() +
-            ", etat='" + isEtat() + "'" +
             ", zones='" + getZones() + "'" +
             "}";
     }

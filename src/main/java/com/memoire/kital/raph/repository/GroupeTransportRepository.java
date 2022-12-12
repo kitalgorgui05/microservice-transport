@@ -15,7 +15,7 @@ import java.util.Optional;
  * Spring Data  repository for the GroupeTransport entity.
  */
 @Repository
-public interface GroupeTransportRepository extends JpaRepository<GroupeTransport, Long>, JpaSpecificationExecutor<GroupeTransport> {
+public interface GroupeTransportRepository extends JpaRepository<GroupeTransport, String>, JpaSpecificationExecutor<GroupeTransport> {
 
     @Query(value = "select distinct groupeTransport from GroupeTransport groupeTransport left join fetch groupeTransport.zones",
         countQuery = "select count(distinct groupeTransport) from GroupeTransport groupeTransport")
@@ -25,5 +25,5 @@ public interface GroupeTransportRepository extends JpaRepository<GroupeTransport
     List<GroupeTransport> findAllWithEagerRelationships();
 
     @Query("select groupeTransport from GroupeTransport groupeTransport left join fetch groupeTransport.zones where groupeTransport.id =:id")
-    Optional<GroupeTransport> findOneWithEagerRelationships(@Param("id") Long id);
+    Optional<GroupeTransport> findOneWithEagerRelationships(@Param("id") String id);
 }

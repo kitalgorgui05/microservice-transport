@@ -35,12 +35,12 @@ public interface ProgrammeTransportService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<ProgrammeTransportDTO> findOne(Long id);
+    Optional<ProgrammeTransportDTO> findOne(String id);
 
     /**
      * Delete the "id" programmeTransport.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

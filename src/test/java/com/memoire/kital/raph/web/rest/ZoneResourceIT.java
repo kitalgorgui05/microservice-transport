@@ -119,7 +119,7 @@ public class ZoneResourceIT {
         int databaseSizeBeforeCreate = zoneRepository.findAll().size();
 
         // Create the Zone with an existing ID
-        zone.setId(1L);
+        zone.setId(null);
         ZoneDTO zoneDTO = zoneMapper.toDto(zone);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -164,11 +164,11 @@ public class ZoneResourceIT {
         restZoneMockMvc.perform(get("/api/zones?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(zone.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(zone.getId())))
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getZone() throws Exception {
@@ -179,7 +179,7 @@ public class ZoneResourceIT {
         restZoneMockMvc.perform(get("/api/zones/{id}", zone.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(zone.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(zone.getId()))
             .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
@@ -191,7 +191,7 @@ public class ZoneResourceIT {
         // Initialize the database
         zoneRepository.saveAndFlush(zone);
 
-        Long id = zone.getId();
+        String id = zone.getId();
 
         defaultZoneShouldBeFound("id.equals=" + id);
         defaultZoneShouldNotBeFound("id.notEquals=" + id);
@@ -292,7 +292,7 @@ public class ZoneResourceIT {
         em.flush();
         zone.addGroupetransports(groupetransports);
         zoneRepository.saveAndFlush(zone);
-        Long groupetransportsId = groupetransports.getId();
+        String groupetransportsId = groupetransports.getId();
 
         // Get all the zoneList where groupetransports equals to groupetransportsId
         defaultZoneShouldBeFound("groupetransportsId.equals=" + groupetransportsId);
@@ -308,7 +308,7 @@ public class ZoneResourceIT {
         restZoneMockMvc.perform(get("/api/zones?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(zone.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(zone.getId())))
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
 

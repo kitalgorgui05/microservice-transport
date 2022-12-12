@@ -89,7 +89,7 @@ public class BusQueryService extends QueryService<Bus> {
         Specification<Bus> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), Bus_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), Bus_.id));
             }
             if (criteria.getMatricule() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getMatricule(), Bus_.matricule));

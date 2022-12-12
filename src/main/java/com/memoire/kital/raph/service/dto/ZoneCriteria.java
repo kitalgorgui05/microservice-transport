@@ -22,13 +22,11 @@ import io.github.jhipster.service.filter.StringFilter;
  */
 public class ZoneCriteria implements Serializable, Criteria {
 
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private StringFilter libelle;
 
-    private LongFilter groupetransportsId;
+    private StringFilter groupetransportsId;
 
     public ZoneCriteria() {
     }
@@ -44,11 +42,11 @@ public class ZoneCriteria implements Serializable, Criteria {
         return new ZoneCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 
@@ -60,11 +58,11 @@ public class ZoneCriteria implements Serializable, Criteria {
         this.libelle = libelle;
     }
 
-    public LongFilter getGroupetransportsId() {
+    public StringFilter getGroupetransportsId() {
         return groupetransportsId;
     }
 
-    public void setGroupetransportsId(LongFilter groupetransportsId) {
+    public void setGroupetransportsId(StringFilter groupetransportsId) {
         this.groupetransportsId = groupetransportsId;
     }
 

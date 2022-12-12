@@ -37,7 +37,7 @@ public class BusServiceImpl implements BusService {
     public BusDTO save(BusDTO busDTO) {
         log.debug("Request to save Bus : {}", busDTO);
         Bus bus = busMapper.toEntity(busDTO);
-        bus = busRepository.save(bus);
+        bus = busRepository.saveAndFlush(bus);
         return busMapper.toDto(bus);
     }
 
@@ -52,14 +52,14 @@ public class BusServiceImpl implements BusService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<BusDTO> findOne(Long id) {
+    public Optional<BusDTO> findOne(String id) {
         log.debug("Request to get Bus : {}", id);
         return busRepository.findById(id)
             .map(busMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete Bus : {}", id);
         busRepository.deleteById(id);
     }
