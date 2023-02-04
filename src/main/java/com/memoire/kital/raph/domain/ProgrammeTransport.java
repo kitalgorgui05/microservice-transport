@@ -13,9 +13,6 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 
-/**
- * A ProgrammeTransport.
- */
 @Entity
 @Table(name = "programme_transports")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

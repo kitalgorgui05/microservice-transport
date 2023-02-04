@@ -30,23 +30,14 @@ import com.memoire.kital.raph.service.mapper.ChauffeurMapper;
 @Service
 @Transactional(readOnly = true)
 public class ChauffeurQueryService extends QueryService<Chauffeur> {
-
     private final Logger log = LoggerFactory.getLogger(ChauffeurQueryService.class);
-
     private final ChauffeurRepository chauffeurRepository;
-
     private final ChauffeurMapper chauffeurMapper;
 
     public ChauffeurQueryService(ChauffeurRepository chauffeurRepository, ChauffeurMapper chauffeurMapper) {
         this.chauffeurRepository = chauffeurRepository;
         this.chauffeurMapper = chauffeurMapper;
     }
-
-    /**
-     * Return a {@link List} of {@link ChauffeurDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public List<ChauffeurDTO> findByCriteria(ChauffeurCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
@@ -54,12 +45,6 @@ public class ChauffeurQueryService extends QueryService<Chauffeur> {
         return chauffeurMapper.toDto(chauffeurRepository.findAll(specification));
     }
 
-    /**
-     * Return a {@link Page} of {@link ChauffeurDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @param page The page, which should be returned.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public Page<ChauffeurDTO> findByCriteria(ChauffeurCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
@@ -68,11 +53,6 @@ public class ChauffeurQueryService extends QueryService<Chauffeur> {
             .map(chauffeurMapper::toDto);
     }
 
-    /**
-     * Return the number of matching entities in the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the number of matching entities.
-     */
     @Transactional(readOnly = true)
     public long countByCriteria(ChauffeurCriteria criteria) {
         log.debug("count by criteria : {}", criteria);
@@ -80,11 +60,6 @@ public class ChauffeurQueryService extends QueryService<Chauffeur> {
         return chauffeurRepository.count(specification);
     }
 
-    /**
-     * Function to convert {@link ChauffeurCriteria} to a {@link Specification}
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching {@link Specification} of the entity.
-     */
     protected Specification<Chauffeur> createSpecification(ChauffeurCriteria criteria) {
         Specification<Chauffeur> specification = Specification.where(null);
         if (criteria != null) {

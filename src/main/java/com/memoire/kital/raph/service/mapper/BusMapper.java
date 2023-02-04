@@ -6,9 +6,6 @@ import com.memoire.kital.raph.service.dto.BusDTO;
 
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link Bus} and its DTO {@link BusDTO}.
- */
 @Mapper(componentModel = "spring", uses = {ChauffeurMapper.class})
 public interface BusMapper extends EntityMapper<BusDTO, Bus> {
 

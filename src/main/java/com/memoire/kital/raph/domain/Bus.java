@@ -10,9 +10,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
-/**
- * A Bus.
- */
 @Entity
 @Table(name = "bus")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -40,7 +37,6 @@ public class Bus implements Serializable {
     @JoinColumn(unique = true)
     private Chauffeur chauffeur;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
     public String getId() {
         return id;
     }
@@ -61,46 +57,36 @@ public class Bus implements Serializable {
     public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
-
     public String getNumero() {
         return numero;
     }
-
     public Bus numero(String numero) {
         this.numero = numero;
         return this;
     }
-
     public void setNumero(String numero) {
         this.numero = numero;
     }
-
     public Integer getNombreplace() {
         return nombreplace;
     }
-
     public Bus nombreplace(Integer nombreplace) {
         this.nombreplace = nombreplace;
         return this;
     }
-
     public void setNombreplace(Integer nombreplace) {
         this.nombreplace = nombreplace;
     }
-
     public Chauffeur getChauffeur() {
         return chauffeur;
     }
-
     public Bus chauffeur(Chauffeur chauffeur) {
         this.chauffeur = chauffeur;
         return this;
     }
-
     public void setChauffeur(Chauffeur chauffeur) {
         this.chauffeur = chauffeur;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -112,13 +98,10 @@ public class Bus implements Serializable {
         }
         return id != null && id.equals(((Bus) o).id);
     }
-
     @Override
     public int hashCode() {
         return 31;
     }
-
-    // prettier-ignore
     @Override
     public String toString() {
         return "Bus{" +

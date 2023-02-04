@@ -21,52 +21,38 @@ import io.github.jhipster.service.filter.StringFilter;
  * fix type specific filters.
  */
 public class ZoneCriteria implements Serializable, Criteria {
-
     private StringFilter id;
-
     private StringFilter libelle;
-
     private StringFilter groupetransportsId;
-
     public ZoneCriteria() {
     }
-
     public ZoneCriteria(ZoneCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.libelle = other.libelle == null ? null : other.libelle.copy();
         this.groupetransportsId = other.groupetransportsId == null ? null : other.groupetransportsId.copy();
     }
-
     @Override
     public ZoneCriteria copy() {
         return new ZoneCriteria(this);
     }
-
     public StringFilter getId() {
         return id;
     }
-
     public void setId(StringFilter id) {
         this.id = id;
     }
-
     public StringFilter getLibelle() {
         return libelle;
     }
-
     public void setLibelle(StringFilter libelle) {
         this.libelle = libelle;
     }
-
     public StringFilter getGroupetransportsId() {
         return groupetransportsId;
     }
-
     public void setGroupetransportsId(StringFilter groupetransportsId) {
         this.groupetransportsId = groupetransportsId;
     }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

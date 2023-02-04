@@ -21,20 +21,12 @@ import com.memoire.kital.raph.service.dto.GroupeTransportCriteria;
 import com.memoire.kital.raph.service.dto.GroupeTransportDTO;
 import com.memoire.kital.raph.service.mapper.GroupeTransportMapper;
 
-/**
- * Service for executing complex queries for {@link GroupeTransport} entities in the database.
- * The main input is a {@link GroupeTransportCriteria} which gets converted to {@link Specification},
- * in a way that all the filters must apply.
- * It returns a {@link List} of {@link GroupeTransportDTO} or a {@link Page} of {@link GroupeTransportDTO} which fulfills the criteria.
- */
 @Service
 @Transactional(readOnly = true)
 public class GroupeTransportQueryService extends QueryService<GroupeTransport> {
 
     private final Logger log = LoggerFactory.getLogger(GroupeTransportQueryService.class);
-
     private final GroupeTransportRepository groupeTransportRepository;
-
     private final GroupeTransportMapper groupeTransportMapper;
 
     public GroupeTransportQueryService(GroupeTransportRepository groupeTransportRepository, GroupeTransportMapper groupeTransportMapper) {
@@ -42,11 +34,6 @@ public class GroupeTransportQueryService extends QueryService<GroupeTransport> {
         this.groupeTransportMapper = groupeTransportMapper;
     }
 
-    /**
-     * Return a {@link List} of {@link GroupeTransportDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public List<GroupeTransportDTO> findByCriteria(GroupeTransportCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
@@ -54,12 +41,6 @@ public class GroupeTransportQueryService extends QueryService<GroupeTransport> {
         return groupeTransportMapper.toDto(groupeTransportRepository.findAll(specification));
     }
 
-    /**
-     * Return a {@link Page} of {@link GroupeTransportDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @param page The page, which should be returned.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public Page<GroupeTransportDTO> findByCriteria(GroupeTransportCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
@@ -67,24 +48,12 @@ public class GroupeTransportQueryService extends QueryService<GroupeTransport> {
         return groupeTransportRepository.findAll(specification, page)
             .map(groupeTransportMapper::toDto);
     }
-
-    /**
-     * Return the number of matching entities in the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the number of matching entities.
-     */
     @Transactional(readOnly = true)
     public long countByCriteria(GroupeTransportCriteria criteria) {
         log.debug("count by criteria : {}", criteria);
         final Specification<GroupeTransport> specification = createSpecification(criteria);
         return groupeTransportRepository.count(specification);
     }
-
-    /**
-     * Function to convert {@link GroupeTransportCriteria} to a {@link Specification}
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching {@link Specification} of the entity.
-     */
     protected Specification<GroupeTransport> createSpecification(GroupeTransportCriteria criteria) {
         Specification<GroupeTransport> specification = Specification.where(null);
         if (criteria != null) {

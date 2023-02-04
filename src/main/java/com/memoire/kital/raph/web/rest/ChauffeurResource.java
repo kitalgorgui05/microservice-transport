@@ -26,22 +26,16 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * REST controller for managing {@link com.memoire.kital.raph.domain.Chauffeur}.
- */
 @RestController
 @RequestMapping("/api")
 public class ChauffeurResource {
-
     private final Logger log = LoggerFactory.getLogger(ChauffeurResource.class);
 
     private static final String ENTITY_NAME = "transportChauffeur";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
     private final ChauffeurService chauffeurService;
-
     private final ChauffeurQueryService chauffeurQueryService;
 
     public ChauffeurResource(ChauffeurService chauffeurService, ChauffeurQueryService chauffeurQueryService) {
@@ -49,13 +43,6 @@ public class ChauffeurResource {
         this.chauffeurQueryService = chauffeurQueryService;
     }
 
-    /**
-     * {@code POST  /chauffeurs} : Create a new chauffeur.
-     *
-     * @param chauffeurDTO the chauffeurDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new chauffeurDTO, or with status {@code 400 (Bad Request)} if the chauffeur has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/chauffeurs")
     public ResponseEntity<ChauffeurDTO> createChauffeur(@Valid @RequestBody ChauffeurDTO chauffeurDTO) throws URISyntaxException {
         log.debug("REST request to save Chauffeur : {}", chauffeurDTO);
@@ -68,15 +55,6 @@ public class ChauffeurResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /chauffeurs} : Updates an existing chauffeur.
-     *
-     * @param chauffeurDTO the chauffeurDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated chauffeurDTO,
-     * or with status {@code 400 (Bad Request)} if the chauffeurDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the chauffeurDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/chauffeurs")
     public ResponseEntity<ChauffeurDTO> updateChauffeur(@Valid @RequestBody ChauffeurDTO chauffeurDTO) throws URISyntaxException {
         log.debug("REST request to update Chauffeur : {}", chauffeurDTO);
@@ -88,14 +66,6 @@ public class ChauffeurResource {
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, chauffeurDTO.getId().toString()))
             .body(result);
     }
-
-    /**
-     * {@code GET  /chauffeurs} : get all the chauffeurs.
-     *
-     * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of chauffeurs in body.
-     */
     @GetMapping("/chauffeurs")
     public ResponseEntity<List<ChauffeurDTO>> getAllChauffeurs(ChauffeurCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Chauffeurs by criteria: {}", criteria);
@@ -103,25 +73,17 @@ public class ChauffeurResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    @GetMapping("/chauffeurs/nom/{id}")
+    public String getEntityNameById(@PathVariable(name = "id") String id){
+        return chauffeurService.getNomChauffeur(id);
+    }
 
-    /**
-     * {@code GET  /chauffeurs/count} : count all the chauffeurs.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
     @GetMapping("/chauffeurs/count")
     public ResponseEntity<Long> countChauffeurs(ChauffeurCriteria criteria) {
         log.debug("REST request to count Chauffeurs by criteria: {}", criteria);
         return ResponseEntity.ok().body(chauffeurQueryService.countByCriteria(criteria));
     }
 
-    /**
-     * {@code GET  /chauffeurs/:id} : get the "id" chauffeur.
-     *
-     * @param id the id of the chauffeurDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the chauffeurDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/chauffeurs/{id}")
     public ResponseEntity<ChauffeurDTO> getChauffeur(@PathVariable String id) {
         log.debug("REST request to get Chauffeur : {}", id);
@@ -129,12 +91,6 @@ public class ChauffeurResource {
         return ResponseUtil.wrapOrNotFound(chauffeurDTO);
     }
 
-    /**
-     * {@code DELETE  /chauffeurs/:id} : delete the "id" chauffeur.
-     *
-     * @param id the id of the chauffeurDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/chauffeurs/{id}")
     public ResponseEntity<Void> deleteChauffeur(@PathVariable String id) {
         log.debug("REST request to delete Chauffeur : {}", id);

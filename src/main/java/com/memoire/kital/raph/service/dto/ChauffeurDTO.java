@@ -11,7 +11,6 @@ import javax.persistence.Lob;
 public class ChauffeurDTO implements Serializable {
 
     private String id;
-
     @NotNull
     @Size(min = 3, max = 20)
     private String prenom;

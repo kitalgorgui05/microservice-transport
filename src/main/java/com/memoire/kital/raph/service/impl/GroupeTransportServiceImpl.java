@@ -15,24 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * Service Implementation for managing {@link GroupeTransport}.
- */
 @Service
 @Transactional
 public class GroupeTransportServiceImpl implements GroupeTransportService {
-
     private final Logger log = LoggerFactory.getLogger(GroupeTransportServiceImpl.class);
-
     private final GroupeTransportRepository groupeTransportRepository;
-
     private final GroupeTransportMapper groupeTransportMapper;
-
     public GroupeTransportServiceImpl(GroupeTransportRepository groupeTransportRepository, GroupeTransportMapper groupeTransportMapper) {
         this.groupeTransportRepository = groupeTransportRepository;
         this.groupeTransportMapper = groupeTransportMapper;
     }
-
     @Override
     public GroupeTransportDTO save(GroupeTransportDTO groupeTransportDTO) {
         log.debug("Request to save GroupeTransport : {}", groupeTransportDTO);
@@ -40,7 +32,6 @@ public class GroupeTransportServiceImpl implements GroupeTransportService {
         groupeTransport = groupeTransportRepository.saveAndFlush(groupeTransport);
         return groupeTransportMapper.toDto(groupeTransport);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Page<GroupeTransportDTO> findAll(Pageable pageable) {
@@ -48,12 +39,9 @@ public class GroupeTransportServiceImpl implements GroupeTransportService {
         return groupeTransportRepository.findAll(pageable)
             .map(groupeTransportMapper::toDto);
     }
-
-
     public Page<GroupeTransportDTO> findAllWithEagerRelationships(Pageable pageable) {
         return groupeTransportRepository.findAllWithEagerRelationships(pageable).map(groupeTransportMapper::toDto);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Optional<GroupeTransportDTO> findOne(String id) {
@@ -61,7 +49,6 @@ public class GroupeTransportServiceImpl implements GroupeTransportService {
         return groupeTransportRepository.findOneWithEagerRelationships(id)
             .map(groupeTransportMapper::toDto);
     }
-
     @Override
     public void delete(String id) {
         log.debug("Request to delete GroupeTransport : {}", id);

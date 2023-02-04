@@ -6,12 +6,8 @@ import com.memoire.kital.raph.service.dto.GroupeTransportDTO;
 
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link GroupeTransport} and its DTO {@link GroupeTransportDTO}.
- */
 @Mapper(componentModel = "spring", uses = {ZoneMapper.class})
 public interface GroupeTransportMapper extends EntityMapper<GroupeTransportDTO, GroupeTransport> {
-
 
     @Mapping(target = "removeZones", ignore = true)
 

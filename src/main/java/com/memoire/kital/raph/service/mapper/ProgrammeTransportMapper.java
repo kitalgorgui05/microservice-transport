@@ -6,9 +6,6 @@ import com.memoire.kital.raph.service.dto.ProgrammeTransportDTO;
 
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link ProgrammeTransport} and its DTO {@link ProgrammeTransportDTO}.
- */
 @Mapper(componentModel = "spring", uses = {GroupeTransportMapper.class, BusMapper.class})
 public interface ProgrammeTransportMapper extends EntityMapper<ProgrammeTransportDTO, ProgrammeTransport> {
 

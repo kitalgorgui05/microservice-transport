@@ -24,18 +24,12 @@ import io.github.jhipster.service.filter.LocalDateFilter;
  */
 public class ProgrammeTransportCriteria implements Serializable, Criteria {
     private StringFilter id;
-
     private InstantFilter heurDepart;
-
     private LocalDateFilter dateDepart;
-
     private StringFilter groupeTransportId;
-
     private StringFilter busId;
-
     public ProgrammeTransportCriteria() {
     }
-
     public ProgrammeTransportCriteria(ProgrammeTransportCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.heurDepart = other.heurDepart == null ? null : other.heurDepart.copy();

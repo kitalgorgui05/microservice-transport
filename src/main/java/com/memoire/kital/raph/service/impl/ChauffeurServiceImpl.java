@@ -15,19 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * Service Implementation for managing {@link Chauffeur}.
- */
 @Service
 @Transactional
 public class ChauffeurServiceImpl implements ChauffeurService {
-
     private final Logger log = LoggerFactory.getLogger(ChauffeurServiceImpl.class);
-
     private final ChauffeurRepository chauffeurRepository;
-
     private final ChauffeurMapper chauffeurMapper;
-
     public ChauffeurServiceImpl(ChauffeurRepository chauffeurRepository, ChauffeurMapper chauffeurMapper) {
         this.chauffeurRepository = chauffeurRepository;
         this.chauffeurMapper = chauffeurMapper;
@@ -40,7 +33,6 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         chauffeur = chauffeurRepository.saveAndFlush(chauffeur);
         return chauffeurMapper.toDto(chauffeur);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Page<ChauffeurDTO> findAll(Pageable pageable) {
@@ -49,7 +41,6 @@ public class ChauffeurServiceImpl implements ChauffeurService {
             .map(chauffeurMapper::toDto);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<ChauffeurDTO> findOne(String id) {
@@ -57,7 +48,15 @@ public class ChauffeurServiceImpl implements ChauffeurService {
         return chauffeurRepository.findById(id)
             .map(chauffeurMapper::toDto);
     }
-
+    @Override
+    public String getNomChauffeur(String id) {
+        ChauffeurDTO chauffeurDTO= chauffeurRepository.findById(id).map(chauffeurMapper::toDto).orElse(null);
+        if(chauffeurDTO==null){
+            return null;
+        }
+        String fullName= chauffeurDTO.getPrenom()+" "+chauffeurDTO.getNom();
+        return fullName;
+    }
     @Override
     public void delete(String id) {
         log.debug("Request to delete Chauffeur : {}", id);

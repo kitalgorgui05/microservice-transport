@@ -5,6 +5,7 @@ import com.memoire.kital.raph.domain.Bus;
 import com.memoire.kital.raph.repository.BusRepository;
 import com.memoire.kital.raph.service.dto.BusDTO;
 import com.memoire.kital.raph.service.mapper.BusMapper;
+import com.memoire.kital.raph.service.mapper.ChauffeurMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,16 +22,14 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BusServiceImpl implements BusService {
-
     private final Logger log = LoggerFactory.getLogger(BusServiceImpl.class);
-
     private final BusRepository busRepository;
-
     private final BusMapper busMapper;
-
-    public BusServiceImpl(BusRepository busRepository, BusMapper busMapper) {
+    private final ChauffeurMapper chauffeurMapper;
+    public BusServiceImpl(BusRepository busRepository, BusMapper busMapper, ChauffeurMapper chauffeurMapper) {
         this.busRepository = busRepository;
         this.busMapper = busMapper;
+        this.chauffeurMapper = chauffeurMapper;
     }
 
     @Override
@@ -49,7 +48,6 @@ public class BusServiceImpl implements BusService {
             .map(busMapper::toDto);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<BusDTO> findOne(String id) {
@@ -57,7 +55,6 @@ public class BusServiceImpl implements BusService {
         return busRepository.findById(id)
             .map(busMapper::toDto);
     }
-
     @Override
     public void delete(String id) {
         log.debug("Request to delete Bus : {}", id);

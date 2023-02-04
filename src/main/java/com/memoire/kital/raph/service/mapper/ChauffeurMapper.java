@@ -6,13 +6,8 @@ import com.memoire.kital.raph.service.dto.ChauffeurDTO;
 
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link Chauffeur} and its DTO {@link ChauffeurDTO}.
- */
 @Mapper(componentModel = "spring", uses = {})
 public interface ChauffeurMapper extends EntityMapper<ChauffeurDTO, Chauffeur> {
-
-
 
     default Chauffeur fromId(String id) {
         if (id == null) {

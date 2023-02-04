@@ -30,36 +30,19 @@ import com.memoire.kital.raph.service.mapper.ProgrammeTransportMapper;
 @Service
 @Transactional(readOnly = true)
 public class ProgrammeTransportQueryService extends QueryService<ProgrammeTransport> {
-
     private final Logger log = LoggerFactory.getLogger(ProgrammeTransportQueryService.class);
-
     private final ProgrammeTransportRepository programmeTransportRepository;
-
     private final ProgrammeTransportMapper programmeTransportMapper;
-
     public ProgrammeTransportQueryService(ProgrammeTransportRepository programmeTransportRepository, ProgrammeTransportMapper programmeTransportMapper) {
         this.programmeTransportRepository = programmeTransportRepository;
         this.programmeTransportMapper = programmeTransportMapper;
     }
-
-    /**
-     * Return a {@link List} of {@link ProgrammeTransportDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public List<ProgrammeTransportDTO> findByCriteria(ProgrammeTransportCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
         final Specification<ProgrammeTransport> specification = createSpecification(criteria);
         return programmeTransportMapper.toDto(programmeTransportRepository.findAll(specification));
     }
-
-    /**
-     * Return a {@link Page} of {@link ProgrammeTransportDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @param page The page, which should be returned.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public Page<ProgrammeTransportDTO> findByCriteria(ProgrammeTransportCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
@@ -67,24 +50,12 @@ public class ProgrammeTransportQueryService extends QueryService<ProgrammeTransp
         return programmeTransportRepository.findAll(specification, page)
             .map(programmeTransportMapper::toDto);
     }
-
-    /**
-     * Return the number of matching entities in the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the number of matching entities.
-     */
     @Transactional(readOnly = true)
     public long countByCriteria(ProgrammeTransportCriteria criteria) {
         log.debug("count by criteria : {}", criteria);
         final Specification<ProgrammeTransport> specification = createSpecification(criteria);
         return programmeTransportRepository.count(specification);
     }
-
-    /**
-     * Function to convert {@link ProgrammeTransportCriteria} to a {@link Specification}
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching {@link Specification} of the entity.
-     */
     protected Specification<ProgrammeTransport> createSpecification(ProgrammeTransportCriteria criteria) {
         Specification<ProgrammeTransport> specification = Specification.where(null);
         if (criteria != null) {

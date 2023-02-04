@@ -12,9 +12,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 
-/**
- * A Chauffeur.
- */
 @Entity
 @Table(name = "chauffeurs")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -53,17 +50,12 @@ public class Chauffeur implements Serializable {
     @Size(min = SizeMapper.SizChauffeurTelephone.MIN, max = SizeMapper.SizChauffeurTelephone.MAX)
     @Column(name = "telephone", length = 12, nullable = false)
     private String telephone;
-
-
     @Lob
     @Column(name = "adresse", nullable = false)
     private String adresse;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -76,90 +68,69 @@ public class Chauffeur implements Serializable {
         this.prenom = prenom;
         return this;
     }
-
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
     public String getNom() {
         return nom;
     }
-
     public Chauffeur nom(String nom) {
         this.nom = nom;
         return this;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
-
     public Instant getDateNaissance() {
         return dateNaissance;
     }
-
     public Chauffeur dateNaissance(Instant dateNaissance) {
         this.dateNaissance = dateNaissance;
         return this;
     }
-
     public void setDateNaissance(Instant dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
-
     public String getLieuNaissance() {
         return lieuNaissance;
     }
-
     public Chauffeur lieuNaissance(String lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
         return this;
     }
-
     public void setLieuNaissance(String lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
     }
-
     public String getCin() {
         return cin;
     }
-
     public Chauffeur cin(String cin) {
         this.cin = cin;
         return this;
     }
-
     public void setCin(String cin) {
         this.cin = cin;
     }
-
     public String getTelephone() {
         return telephone;
     }
-
     public Chauffeur telephone(String telephone) {
         this.telephone = telephone;
         return this;
     }
-
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-
     public String getAdresse() {
         return adresse;
     }
-
     public Chauffeur adresse(String adresse) {
         this.adresse = adresse;
         return this;
     }
-
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

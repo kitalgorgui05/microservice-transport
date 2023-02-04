@@ -15,24 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * Service Implementation for managing {@link Zone}.
- */
 @Service
 @Transactional
 public class ZoneServiceImpl implements ZoneService {
-
     private final Logger log = LoggerFactory.getLogger(ZoneServiceImpl.class);
-
     private final ZoneRepository zoneRepository;
-
     private final ZoneMapper zoneMapper;
-
     public ZoneServiceImpl(ZoneRepository zoneRepository, ZoneMapper zoneMapper) {
         this.zoneRepository = zoneRepository;
         this.zoneMapper = zoneMapper;
     }
-
     @Override
     public ZoneDTO save(ZoneDTO zoneDTO) {
         log.debug("Request to save Zone : {}", zoneDTO);
@@ -40,7 +32,6 @@ public class ZoneServiceImpl implements ZoneService {
         zone = zoneRepository.saveAndFlush(zone);
         return zoneMapper.toDto(zone);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Page<ZoneDTO> findAll(Pageable pageable) {
@@ -48,8 +39,6 @@ public class ZoneServiceImpl implements ZoneService {
         return zoneRepository.findAll(pageable)
             .map(zoneMapper::toDto);
     }
-
-
     @Override
     @Transactional(readOnly = true)
     public Optional<ZoneDTO> findOne(String id) {
@@ -57,7 +46,6 @@ public class ZoneServiceImpl implements ZoneService {
         return zoneRepository.findById(id)
             .map(zoneMapper::toDto);
     }
-
     @Override
     public void delete(String id) {
         log.debug("Request to delete Zone : {}", id);

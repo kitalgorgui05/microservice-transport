@@ -22,61 +22,46 @@ import io.github.jhipster.service.filter.StringFilter;
  */
 public class GroupeTransportCriteria implements Serializable, Criteria {
     private StringFilter id;
-
     private StringFilter nom;
-
     private IntegerFilter nombreEleves;
-
     private StringFilter zonesId;
 
     public GroupeTransportCriteria() {
     }
-
     public GroupeTransportCriteria(GroupeTransportCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.nom = other.nom == null ? null : other.nom.copy();
         this.nombreEleves = other.nombreEleves == null ? null : other.nombreEleves.copy();
         this.zonesId = other.zonesId == null ? null : other.zonesId.copy();
     }
-
     @Override
     public GroupeTransportCriteria copy() {
         return new GroupeTransportCriteria(this);
     }
-
     public StringFilter getId() {
         return id;
     }
-
     public void setId(StringFilter id) {
         this.id = id;
     }
-
     public StringFilter getNom() {
         return nom;
     }
-
     public void setNom(StringFilter nom) {
         this.nom = nom;
     }
-
     public IntegerFilter getNombreEleves() {
         return nombreEleves;
     }
-
     public void setNombreEleves(IntegerFilter nombreEleves) {
         this.nombreEleves = nombreEleves;
     }
-
     public StringFilter getZonesId() {
         return zonesId;
     }
-
     public void setZonesId(StringFilter zonesId) {
         this.zonesId = zonesId;
     }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -92,7 +77,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
             Objects.equals(nombreEleves, that.nombreEleves) &&
             Objects.equals(zonesId, that.zonesId);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(
@@ -102,8 +86,6 @@ public class GroupeTransportCriteria implements Serializable, Criteria {
         zonesId
         );
     }
-
-    // prettier-ignore
     @Override
     public String toString() {
         return "GroupeTransportCriteria{" +

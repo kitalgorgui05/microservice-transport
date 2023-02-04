@@ -30,36 +30,19 @@ import com.memoire.kital.raph.service.mapper.BusMapper;
 @Service
 @Transactional(readOnly = true)
 public class BusQueryService extends QueryService<Bus> {
-
     private final Logger log = LoggerFactory.getLogger(BusQueryService.class);
-
     private final BusRepository busRepository;
-
     private final BusMapper busMapper;
-
     public BusQueryService(BusRepository busRepository, BusMapper busMapper) {
         this.busRepository = busRepository;
         this.busMapper = busMapper;
     }
-
-    /**
-     * Return a {@link List} of {@link BusDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public List<BusDTO> findByCriteria(BusCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
         final Specification<Bus> specification = createSpecification(criteria);
         return busMapper.toDto(busRepository.findAll(specification));
     }
-
-    /**
-     * Return a {@link Page} of {@link BusDTO} which matches the criteria from the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @param page The page, which should be returned.
-     * @return the matching entities.
-     */
     @Transactional(readOnly = true)
     public Page<BusDTO> findByCriteria(BusCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
@@ -68,23 +51,12 @@ public class BusQueryService extends QueryService<Bus> {
             .map(busMapper::toDto);
     }
 
-    /**
-     * Return the number of matching entities in the database.
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the number of matching entities.
-     */
     @Transactional(readOnly = true)
     public long countByCriteria(BusCriteria criteria) {
         log.debug("count by criteria : {}", criteria);
         final Specification<Bus> specification = createSpecification(criteria);
         return busRepository.count(specification);
     }
-
-    /**
-     * Function to convert {@link BusCriteria} to a {@link Specification}
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching {@link Specification} of the entity.
-     */
     protected Specification<Bus> createSpecification(BusCriteria criteria) {
         Specification<Bus> specification = Specification.where(null);
         if (criteria != null) {
