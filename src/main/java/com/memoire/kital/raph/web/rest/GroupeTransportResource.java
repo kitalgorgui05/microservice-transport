@@ -49,13 +49,7 @@ public class GroupeTransportResource {
         this.groupeTransportQueryService = groupeTransportQueryService;
     }
 
-    /**
-     * {@code POST  /groupe-transports} : Create a new groupeTransport.
-     *
-     * @param groupeTransportDTO the groupeTransportDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new groupeTransportDTO, or with status {@code 400 (Bad Request)} if the groupeTransport has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
+
     @PostMapping("/groupe-transports")
     public ResponseEntity<GroupeTransportDTO> createGroupeTransport(@Valid @RequestBody GroupeTransportDTO groupeTransportDTO) throws URISyntaxException {
         log.debug("REST request to save GroupeTransport : {}", groupeTransportDTO);
@@ -68,15 +62,6 @@ public class GroupeTransportResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /groupe-transports} : Updates an existing groupeTransport.
-     *
-     * @param groupeTransportDTO the groupeTransportDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated groupeTransportDTO,
-     * or with status {@code 400 (Bad Request)} if the groupeTransportDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the groupeTransportDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/groupe-transports")
     public ResponseEntity<GroupeTransportDTO> updateGroupeTransport(@Valid @RequestBody GroupeTransportDTO groupeTransportDTO) throws URISyntaxException {
         log.debug("REST request to update GroupeTransport : {}", groupeTransportDTO);
@@ -89,13 +74,6 @@ public class GroupeTransportResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /groupe-transports} : get all the groupeTransports.
-     *
-     * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of groupeTransports in body.
-     */
     @GetMapping("/groupe-transports")
     public ResponseEntity<List<GroupeTransportDTO>> getAllGroupeTransports(GroupeTransportCriteria criteria, Pageable pageable) {
         log.debug("REST request to get GroupeTransports by criteria: {}", criteria);
@@ -104,24 +82,12 @@ public class GroupeTransportResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /groupe-transports/count} : count all the groupeTransports.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
     @GetMapping("/groupe-transports/count")
     public ResponseEntity<Long> countGroupeTransports(GroupeTransportCriteria criteria) {
         log.debug("REST request to count GroupeTransports by criteria: {}", criteria);
         return ResponseEntity.ok().body(groupeTransportQueryService.countByCriteria(criteria));
     }
 
-    /**
-     * {@code GET  /groupe-transports/:id} : get the "id" groupeTransport.
-     *
-     * @param id the id of the groupeTransportDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the groupeTransportDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/groupe-transports/{id}")
     public ResponseEntity<GroupeTransportDTO> getGroupeTransport(@PathVariable String id) {
         log.debug("REST request to get GroupeTransport : {}", id);

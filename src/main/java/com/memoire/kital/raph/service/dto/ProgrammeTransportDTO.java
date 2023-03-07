@@ -11,8 +11,8 @@ public class ProgrammeTransportDTO implements Serializable {
     private Instant heurDepart;
     @NotNull
     private LocalDate dateDepart;
-    private String groupeTransportId;
-    private String busId;
+    private GroupeTransportDTO groupeTransport;
+    private BusDTO bus;
 
     //getter and setter
     public String getId() {
@@ -34,17 +34,17 @@ public class ProgrammeTransportDTO implements Serializable {
     public void setDateDepart(LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
-    public String getGroupeTransportId() {
-        return groupeTransportId;
+    public GroupeTransportDTO getGroupeTransport() {
+        return groupeTransport;
     }
-    public void setGroupeTransportId(String groupeTransportId) {
-        this.groupeTransportId = groupeTransportId;
+    public void setGroupeTransport(GroupeTransportDTO groupeTransport) {
+        this.groupeTransport = groupeTransport;
     }
-    public String getBusId() {
-        return busId;
+    public BusDTO getBus() {
+        return bus;
     }
-    public void setBusId(String busId) {
-        this.busId = busId;
+    public void setBus(BusDTO bus) {
+        this.bus = bus;
     }
     @Override
     public boolean equals(Object o) {
@@ -66,8 +66,8 @@ public class ProgrammeTransportDTO implements Serializable {
             "id=" + getId() +
             ", heurDepart='" + getHeurDepart() + "'" +
             ", dateDepart='" + getDateDepart() + "'" +
-            ", groupeTransportId=" + getGroupeTransportId() +
-            ", busId=" + getBusId() +
+            ", groupeTransportId=" + getGroupeTransport() +
+            ", busId=" + getBus() +
             "}";
     }
 }

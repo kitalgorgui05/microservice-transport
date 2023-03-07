@@ -5,23 +5,16 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import javax.persistence.Lob;
 
-/**
- * A DTO for the {@link com.memoire.kital.raph.domain.Chauffeur} entity.
- */
 public class ChauffeurDTO implements Serializable {
-
     private String id;
     @NotNull
     @Size(min = 3, max = 20)
     private String prenom;
-
     @NotNull
     @Size(min = 3, max = 20)
     private String nom;
-
     @NotNull
     private Instant dateNaissance;
-
     @NotNull
     @Size(min = 2, max = 20)
     private String lieuNaissance;
@@ -33,11 +26,8 @@ public class ChauffeurDTO implements Serializable {
     @NotNull
     @Size(min = 7, max = 12)
     private String telephone;
-
-
     @Lob
     private String adresse;
-
 
     public String getId() {
         return id;
@@ -101,6 +91,24 @@ public class ChauffeurDTO implements Serializable {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    //all constructor
+
+    public ChauffeurDTO(String id, String prenom, String nom, Instant dateNaissance, String lieuNaissance, String cin, String telephone, String adresse) {
+        this.id = id;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
+        this.lieuNaissance = lieuNaissance;
+        this.cin = cin;
+        this.telephone = telephone;
+        this.adresse = adresse;
+    }
+    public ChauffeurDTO() {
+    }
+    public ChauffeurDTO(String id) {
+        this.id = id;
     }
 
     @Override

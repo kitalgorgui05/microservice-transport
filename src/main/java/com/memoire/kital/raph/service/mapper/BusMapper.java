@@ -9,10 +9,9 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {ChauffeurMapper.class})
 public interface BusMapper extends EntityMapper<BusDTO, Bus> {
 
-    @Mapping(source = "chauffeur.id", target = "chauffeurId")
+    //@Mapping(source = "chauffeur.id", target = "chauffeurId")
     BusDTO toDto(Bus bus);
-
-    @Mapping(source = "chauffeurId", target = "chauffeur")
+//    @Mapping(source = "chauffeurId", target = "chauffeur")
     Bus toEntity(BusDTO busDTO);
 
     default Bus fromId(String id) {

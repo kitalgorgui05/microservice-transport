@@ -1,6 +1,6 @@
 package com.memoire.kital.raph.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class BusDTO implements Serializable {
@@ -11,7 +11,8 @@ public class BusDTO implements Serializable {
     private String numero;
     @NotNull
     private Integer nombreplace;
-    private String chauffeurId;
+    private ChauffeurDTO chauffeur;
+
     // getter and setter
     public String getId() {
         return id;
@@ -35,17 +36,31 @@ public class BusDTO implements Serializable {
     public Integer getNombreplace() {
         return nombreplace;
     }
-
     public void setNombreplace(Integer nombreplace) {
         this.nombreplace = nombreplace;
     }
-
-    public String getChauffeurId() {
-        return chauffeurId;
+    public ChauffeurDTO getChauffeur() {
+        return chauffeur;
+    }
+    public void setChauffeur(ChauffeurDTO chauffeur) {
+        this.chauffeur = chauffeur;
     }
 
-    public void setChauffeurId(String chauffeurId) {
-        this.chauffeurId = chauffeurId;
+
+    //all constructor
+    public BusDTO(String id, String matricule, String numero, Integer nombreplace, ChauffeurDTO chauffeur) {
+        this.id = id;
+        this.matricule = matricule;
+        this.numero = numero;
+        this.nombreplace = nombreplace;
+        this.chauffeur = chauffeur;
+    }
+
+    public BusDTO(String id) {
+        this.id = id;
+    }
+
+    public BusDTO() {
     }
 
     @Override
@@ -70,7 +85,7 @@ public class BusDTO implements Serializable {
             ", matricule='" + getMatricule() + "'" +
             ", numero='" + getNumero() + "'" +
             ", nombreplace=" + getNombreplace() +
-            ", chauffeurId=" + getChauffeurId() +
+            ", chauffeurId=" + getChauffeur() +
             "}";
     }
 }
